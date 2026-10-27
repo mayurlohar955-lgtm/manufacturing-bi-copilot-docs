@@ -49,6 +49,12 @@ This section explains how a new user begins using the application.
 ![Manufacturing BI Copilot dashboard](images/sign-in-page.png)
 
 
+![Manufacturing BI Copilot dashboard](images/sign.png)
+
+
+![Manufacturing BI Copilot dashboard](images/create-account.png)
+
+
 ![Manufacturing BI Copilot dashboard](images/dashboard-page.png)
 
 ### Step 2: Understand the interface
