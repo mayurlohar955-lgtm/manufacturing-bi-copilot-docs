@@ -51,10 +51,6 @@ This section explains how a new user begins using the application.
 
 ![Manufacturing BI Copilot dashboard](images/sign.png)
 
-OR
-
-![Manufacturing BI Copilot dashboard](images/create-account.png)
-
 
 ![Manufacturing BI Copilot dashboard](images/dashboard-page.png)
 
