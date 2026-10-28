@@ -1,0 +1,6 @@
+site_name: "Manufacturing BI Copilot Documentation"
+site_url: "https://manufacturing-bi-copilot-docs.readthedocs.io/"
+
+nav:
+  - Home: README.md
+  - User Guide: USER_GUIDE.md
