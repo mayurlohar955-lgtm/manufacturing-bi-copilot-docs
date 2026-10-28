@@ -137,7 +137,7 @@ Explore the documentation to learn how to use the platform.
 | Troubleshooting | Find solutions to common issues. |
 | FAQ | Find answers to frequently asked questions. |
 
-**Full Documentation:** [Open the Documentation](./docs/README.md)
+**Full Documentation:** [Open the Documentation](USER_GUIDE.md)
 
 Update this link to match the actual location of your documentation files.
 
