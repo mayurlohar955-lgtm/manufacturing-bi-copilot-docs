@@ -2,6 +2,11 @@ site_name: "Manufacturing BI Copilot Documentation"
 site_url: "https://readthedocs.io"
 docs_dir: .
 
+# This prevents the nested infinite build error on Read the Docs
+exclude_docs:
+  - "_readthedocs/*"
+  - ".readthedocs.yaml"
+
 nav:
   - Home: README.md
   - User Guide: USER_GUIDE.md
