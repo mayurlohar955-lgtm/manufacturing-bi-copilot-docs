@@ -1,11 +1,5 @@
 site_name: "Manufacturing BI Copilot Documentation"
 site_url: "https://readthedocs.io"
-docs_dir: .
-
-# Fixed to use a multiline string format
-exclude_docs: |
-  _readthedocs/*
-  .readthedocs.yaml
 
 nav:
   - Home: README.md
