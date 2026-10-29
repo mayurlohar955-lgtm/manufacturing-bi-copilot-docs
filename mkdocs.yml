@@ -1,7 +1,13 @@
 site_name: "Manufacturing BI Copilot Documentation"
-site_url: "https://manufacturing-bi-copilot-docs.readthedocs.io/"  # Make sure this matches your exact Read the Docs live link
+site_url: "https://manufacturing-bi-copilot-docs.readthedocs.io/"
 site_description: "Official documentation for Manufacturing BI Copilot. Learn how to analyze production data, predict machine failures, and identify anomalies using AI-powered analytics."
 site_author: "Manufacturing BI Copilot Team"
+docs_dir: .
+
+# FIXED: This line stops Read the Docs from crashing during compilation
+exclude_docs: |
+  _readthedocs/*
+  .readthedocs.yaml
 
 # 1. Advanced SEO Meta Tags
 extra:
@@ -16,7 +22,14 @@ use_directory_urls: true
 
 nav:
   - Home: README.md
-  - User Guide: USER_GUIDE.md
+  - User Guides:
+    - Main Workspace: USER_GUIDE.md
+  - Help & Support:
+    - Troubleshooting: docs/Troubleshooting.md
+    - FAQ: docs/FAQ.md
+  - Trust & Compliance:
+    - Security Policy: docs/Security.md
+    - System Reliability: docs/Reliability.md
 
 theme:
   name: material
