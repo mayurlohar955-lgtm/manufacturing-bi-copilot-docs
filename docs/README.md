@@ -25,7 +25,7 @@ data-informed decisions.
 - [Documentation](#documentation)
 - [Manufacturing Problems We Address](#manufacturing-problems-we-address)
 - [How It Works](#how-it-works)
-- [Getting Started](#getting-started)
+- [Quick Start Guide](#quick-start-guide)
 - [Who Is It For?](#who-is-it-for)
 - [Product Demo](#product-demo)
 - [Security and Data Handling](#security-and-data-handling)
@@ -142,7 +142,6 @@ Explore the documentation to learn how to use the platform.
 | Troubleshooting | Find solutions to common issues. |
 | FAQ | Find answers to frequently asked questions. |
 
-**User Guild Documentation:** [Open User Guild Documentation](USER_GUIDE.md)
 
 Update this link to match the actual location of your documentation files.
 
@@ -193,19 +192,19 @@ in your deployment.
 
 ---
 
-## Getting Started
+## Quick Start Guide
 
-To get started:
+Get up and running with Manufacturing BI Copilot in less than 2 minutes:
 
-1. Open the available Manufacturing BI Copilot application.
-2. Follow the applicable access or sign-in instructions.
-3. Navigate to the relevant section.
-4. Upload supported data or access an available connected data source.
-5. Explore the available analytics and AI capabilities.
+1. **Launch the Platform:** Open the [Live Application](https://manufacturing.bhavu.co) in your browser.
+2. **Access the Demo Environment:** Click **"Demo"** on the main dashboard screen to explore pre-loaded factory data safely.
+3. **Upload Your First Dataset:** Navigate to the **Upload Data** tab and drag-and-drop any supported Excel or CSV production log.
+4. **Ask the AI Assistant:** Type your first operational question into the chat console: *"What was our primary production anomaly last week?"*
 
-For detailed instructions, consult the User Guide.
+!!! info "Need Help?"
+    If you encounter any data formatting issues while syncing your files, refer directly to our [User Guide](USER_GUIDE.md).
 
----
+
 
 ## Who Is It For?
 
