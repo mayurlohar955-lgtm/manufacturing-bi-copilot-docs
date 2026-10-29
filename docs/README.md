@@ -106,7 +106,7 @@ Visualize manufacturing data and explore operational performance.
 
 Explore inventory-related information and records.
 
-![Manufacturing BI Copilot Inventory](/docs/images/inventory-page.png)
+![Manufacturing BI Copilot Inventory](images/inventory-page.png)
 
 ### AI Assistant
 
