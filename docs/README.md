@@ -2,6 +2,9 @@
 
 *   **✨ [Launch the Live App](https://manufacturing.bhavu.co/)**
 
+<a href="https://manufacturing.bhavu.co/" target="_blank" style="background-color: #2F80ED; color: white; padding: 12px 24px; text-decoration: none; border-radius: 4px; font-weight: bold; display: inline-block; margin-bottom: 20px;">🚀 Launch the Live App →</a>
+
+
 ### AI-Powered Manufacturing Analytics and Decision Support
 
 Manufacturing BI Copilot helps manufacturing teams analyze production
