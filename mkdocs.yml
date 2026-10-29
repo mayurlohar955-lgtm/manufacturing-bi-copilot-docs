@@ -1,5 +1,18 @@
 site_name: "Manufacturing BI Copilot Documentation"
-site_url: "https://readthedocs.io"
+site_url: "https://manufacturing-bi-copilot-docs.readthedocs.io/"  # Make sure this matches your exact Read the Docs live link
+site_description: "Official documentation for Manufacturing BI Copilot. Learn how to analyze production data, predict machine failures, and identify anomalies using AI-powered analytics."
+site_author: "Manufacturing BI Copilot Team"
+
+# 1. Advanced SEO Meta Tags
+extra:
+  version: "1.0.0"
+  keywords: "manufacturing analytics, predictive maintenance, production anomaly detection, factory BI tool, machine failure forecasting, manufacturing AI assistant"
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com
+
+# 2. Automatically generate a sitemap.xml for Google crawler bots
+use_directory_urls: true
 
 nav:
   - Home: README.md
