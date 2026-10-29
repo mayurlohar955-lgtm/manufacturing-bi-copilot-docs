@@ -1,5 +1,7 @@
 # Manufacturing BI Copilot
 
+*   **✨ [Launch the Live App](https://manufacturing.bhavu.co/)**
+
 ### AI-Powered Manufacturing Analytics and Decision Support
 
 Manufacturing BI Copilot helps manufacturing teams analyze production
