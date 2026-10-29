@@ -139,7 +139,7 @@ Explore the documentation to learn how to use the platform.
 | Troubleshooting | Find solutions to common issues. |
 | FAQ | Find answers to frequently asked questions. |
 
-**Full Documentation:** [Open the Documentation](USER_GUIDE.md)
+**User Guild Documentation:** [Open User Guild Documentation](USER_GUIDE.md)
 
 Update this link to match the actual location of your documentation files.
 
@@ -241,6 +241,9 @@ data, review the applicable security documentation, data-handling
 practices, access controls, and deployment requirements.
 
 For details, refer to the verified security documentation.
+
+
+**Security Documentation:** [Security Documentation](SECURITY.md)
 
 ---
 
