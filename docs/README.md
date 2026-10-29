@@ -1,8 +1,8 @@
 # Manufacturing BI Copilot
 
-*   **✨ [Launch the Live App](https://manufacturing.bhavu.co/)**
+   **✨ Launch the Live App
 
-<a href="https://manufacturing.bhavu.co/" target="_blank" style="background-color: #2F80ED; color: white; padding: 12px 24px; text-decoration: none; border-radius: 4px; font-weight: bold; display: inline-block; margin-bottom: 20px;">🚀 Launch the Live App →</a>
+<a href="https://manufacturing.bhavu.co/" target="_blank" style="background-color: #2F80ED; color: white; padding: 12px 24px; text-decoration: none; border-radius: 4px; font-weight: bold; display: inline-block; margin-bottom: 20px;"> Open Live App →</a>
 
 
 ### AI-Powered Manufacturing Analytics and Decision Support
