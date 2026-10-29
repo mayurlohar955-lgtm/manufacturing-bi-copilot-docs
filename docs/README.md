@@ -226,7 +226,7 @@ manufacturing operations and data analysis, including:
 Want to explore Manufacturing BI Copilot?
 
 - **Live Application:** https://manufacturing.bhavu.co/
-- **Request a Demo:** [Contact us on WhatsApp](https://wa.me/917709453058?text=Hi%2C%20I%27d%20like%20to%20request%20a%20demo%20of%20Manufacturing%20BI%20Copilot.)
+- **Request a Demo:** [💬 Chat with Us on WhatsApp](https://wa.me/917709453058?text=Hi%2C%20I%27d%20like%20to%20request%20a%20demo%20of%20Manufacturing%20BI%20Copilot.)
 - **Product Website:** https://manufacturing.bhavu.co/
 
 Replace these placeholders with working links before publishing.
@@ -254,7 +254,7 @@ For details, refer to the verified security documentation.
 For product inquiries, feedback, or demonstration requests:
 
 - **Website:** https://manufacturing.bhavu.co/
-- **Request a Demo:** [Contact us on WhatsApp](https://wa.me/917709453058?text=Hi%2C%20I%27d%20like%20to%20request%20a%20demo%20of%20Manufacturing%20BI%20Copilot.)
+- **Request a Demo:** [💬 Chat with Us on WhatsApp](https://wa.me/917709453058?text=Hi%2C%20I%27d%20like%20to%20request%20a%20demo%20of%20Manufacturing%20BI%20Copilot.)
 
 Do not submit confidential manufacturing data, credentials,
 or sensitive customer information through public issues.
