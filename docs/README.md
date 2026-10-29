@@ -100,25 +100,25 @@ Explore the Manufacturing BI Copilot interface.
 
 Visualize manufacturing data and explore operational performance.
 
-![Manufacturing BI Copilot Dashboard](images/dashboard-view.png)
+![Manufacturing BI Copilot Dashboard](/docs/images/dashboard-view.png)
 
 ### Inventory
 
 Explore inventory-related information and records.
 
-![Manufacturing BI Copilot Inventory](images/inventory-page.png)
+![Manufacturing BI Copilot Inventory](/docs/images/inventory-page.png)
 
 ### AI Assistant
 
 Ask questions about available manufacturing data.
 
-![Manufacturing BI Copilot AI Assistant](images/ai-question-answer.png)
+![Manufacturing BI Copilot AI Assistant](/docs/images/ai-question-answer.png)
 
 ### Alerts
 
 Review alerts and investigate potential issues.
 
-![Manufacturing BI Copilot Alerts](images/anomaly-detection-alert.png)
+![Manufacturing BI Copilot Alerts](/docs/images/anomaly-detection-alert.png)
 
 More screenshots and feature explanations are available in the
 documentation.
