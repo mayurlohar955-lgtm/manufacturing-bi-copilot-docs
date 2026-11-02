@@ -4,12 +4,12 @@ site_description: "Official documentation for Manufacturing BI Copilot. Learn ho
 site_author: "Manufacturing BI Copilot Team"
 docs_dir: .
 
-# Prevents the nested build folder loop error on Read the Docs
+# Stops Read the Docs from crashing during nested compilation loops
 exclude_docs: |
   _readthedocs/*
   .readthedocs.yaml
 
-# 1. Advanced SEO Meta Tags
+# Advanced SEO Meta Data
 extra:
   version: "1.0.0"
   keywords: "manufacturing analytics, predictive maintenance, production anomaly detection, factory BI tool, machine failure forecasting, manufacturing AI assistant"
@@ -17,7 +17,6 @@ extra:
     - icon: fontawesome/brands/github
       link: https://github.com/mayurlohar955-lgtm/manufacturing-bi-copilot-docs
 
-# 2. Automatically generate a sitemap.xml for Google crawler bots
 use_directory_urls: true
 
 nav:
@@ -31,15 +30,12 @@ nav:
     - Security Policy: docs/Security.md
     - System Reliability: docs/Reliability.md
 
+# Simplified Theme Setup to prevent line cutoff errors
 theme:
   name: material
-  palette:
-    primary: indigo
-    accent: indigo
   features:
     - navigation.tabs
     - search.suggest
-  # Beautiful Floating Banner Announcement At The Top
   announcement: |
     🚀 <strong>New Update:</strong> Version 1.0 is live! Test the new real-time anomaly features now. 
     <a href="https://bhavu.co" target="_blank" style="color: #FFEB3B; font-weight: bold; text-decoration: underline; margin-left: 10px;">Launch Live App →</a>
