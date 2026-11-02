@@ -39,6 +39,6 @@ theme:
   features:
     - navigation.tabs
     - search.suggest
-  announcement: |
-    🚀 <strong>New Update:</strong> Version 1.0 is live! Test the new real-time anomaly features now. 
-    <a href="https://bhavu.co" target="_blank" style="color: #FFEB3B; font-weight: bold; text-decoration: underline; margin-left: 10px;">Launch Live App →</a>
+    announcement: |
+    ✨ <strong>Beta Release:</strong> Direct ERP integration pipelines are now open for testing.
+
