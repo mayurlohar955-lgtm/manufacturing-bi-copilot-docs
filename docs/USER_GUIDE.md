@@ -428,13 +428,7 @@ The user should verify the underlying cause before making operational changes.
 
 ---
 
-Here is the complete, professional documentation you can add to your existing docs site (ReadTheDocs) or internal admin guide. 
-
-You can copy and paste this directly into your Markdown files. It explains the Factory Calendar feature to your users and your development team.
-
----
-
-# Factory Calendar & Off-Day Management
+# 10. Factory Calendar & Off-Day Management
 
 ## Overview
 Manufacturing companies do not all operate 24/7. Some factories close on Sundays, others operate on a 5-day work week, and some require temporary shutdowns for maintenance, festivals, or emergencies. 
@@ -549,7 +543,7 @@ if (company && !isFactoryOpen(company, planDate)) {
 }
 ```
 
-# 10. Troubleshooting Guide
+# 11. Troubleshooting Guide
 
 This section should help users resolve common problems without contacting support for every issue.
 
@@ -568,7 +562,7 @@ Add actual error messages and screenshots as you learn which issues users encoun
 
 ---
 
-# 11. Frequently Asked Questions (FAQ)
+# 12. Frequently Asked Questions (FAQ)
 
 The FAQ should address questions users commonly ask.
 
@@ -604,7 +598,7 @@ List the integrations that are actually supported and explain their setup requir
 
 ---
 
-# 12. Glossary
+# 13. Glossary
 
 Include simple explanations of important manufacturing and analytics terms.
 
@@ -623,17 +617,79 @@ Include simple explanations of important manufacturing and analytics terms.
 
 ---
 
-# 13. Support and Feedback
+# 14. Share Your Feedback
 
-The final section should explain how users can obtain assistance.
+## Overview
+At Manufacturing BI Copilot, we are constantly working to improve your experience. Because every factory operates differently, your feedback is the most valuable tool we have to make the platform better for you.
 
-Include:
-- Support contact or help channel.
-- How to report a problem.
-- What information to include in a bug report.
-- How to submit product feedback.
-- Where users can find updates or announcements.
+The Feedback System allows you to easily rate the platform, share your thoughts, and (with your permission) showcase your experience to other manufacturers on our public homepage.
 
-A useful bug report should contain the affected feature, steps to reproduce the issue, expected behaviour, actual behaviour, and a screenshot or error message where appropriate.
+---
 
-Users should not attach passwords, API keys, or confidential production data to support requests.
+## 1. How to Submit Feedback
+
+You don't need to go looking for a feedback form. The system will gently prompt you when the time is right.
+
+### The Prompt (After 7 Days)
+Once you have been using Manufacturing BI Copilot for **7 days**, a small banner will appear at the top of your Dashboard.
+* It will ask: *"Help us improve Manufacturing BI Copilot."*
+* You will have the option to **⭐ Give Feedback** or click **Maybe Later**.
+
+### The Feedback Modal
+If you click **Give Feedback**, a quick modal will open:
+1. **Select a Star Rating:** Click between 1 and 5 stars.
+2. **Write Your Review:** Type your thoughts in the text box. Let us know what you love, or what needs fixing!
+3. **Submit:** Click the red **Submit** button.
+
+### What happens after you submit?
+Once submitted, the banner will disappear, and a green **🎉 Thank you for your feedback!** banner will appear to confirm we received it. You will not be prompted again.
+
+---
+
+## 2. "Maybe Later" & Reminders
+We know you are busy running a factory. If you click **Maybe Later**:
+* The banner will hide so it doesn't get in your way.
+* **After 2 days**, the banner will reappear as a friendly reminder.
+* You will only receive **one reminder** before the system assumes you are not interested, and the banner will stop appearing.
+
+---
+
+## 3. Public Testimonials (Optional)
+We believe that the best way to help other factory managers is through real reviews from people like you.
+
+If you leave a **4-star or 5-star rating**, we may feature your review in the **"Trusted by factory teams"** section on our public homepage (`manufacturing.bhavu.co`).
+* **Privacy Guarantee:** We will only display your **First Name, Last Initial** (e.g., *Rahul S.*) and your **Company Name**.
+* **Never Displayed:** Your email address, phone number, or specific factory data will **never** be shared or made public.
+* **Low Ratings:** If you leave a 1, 2, or 3-star review, it will remain 100% private and will only be seen by our internal product team to help us fix the issues.
+
+---
+
+## 4. Developer & Admin Notes
+
+### Database Schema
+The feedback system relies on two database tables (managed via Prisma):
+
+**1. `Feedback` Table (The content):**
+* `rating` (Int: 1-5)
+* `message` (String)
+* `isPublic` (Boolean: Auto-set to `true` if rating ≥ 4)
+* `userId` / `companyId`
+
+**2. `FeedbackRequest` Table (The lifecycle):**
+Tracks *when* to show the banner to a user.
+* `status`: `PENDING` | `SKIPPED` | `SUBMITTED`
+* `skipCount`: Tracks how many times "Maybe Later" was clicked.
+* `reminderSent`: Boolean (prevents spamming reminders).
+* `lastShownAt`: Timestamp to enforce the 2-day delay.
+
+### API Routes
+* `GET /api/feedback/pending` — Checks if the logged-in user should see the banner.
+* `POST /api/feedback/submit` — Saves the review and marks the request as `SUBMITTED`.
+* `POST /api/feedback/skip` — Marks the request as `SKIPPED` and updates `lastShownAt`.
+* `GET /api/feedback/public` — (Public route) Fetches all `isPublic: true` reviews for the landing page.
+
+### Automated Cron Job
+The feedback lifecycle is managed by a Vercel Cron job (`/api/cron/feedback`) that runs daily at 9:00 AM:
+1. **Trigger:** Finds users who created an account 7+ days ago and creates a `PENDING` request.
+2. **Reminder:** If a request has been `PENDING` for 2+ days, it sets `reminderSent = true` (the UI will then show the reminder text).
+3. **Re-show:** If a request is `SKIPPED` and 2+ days have passed since `lastShownAt`, it flips the status back to `PENDING` to show the banner again.
