@@ -428,6 +428,127 @@ The user should verify the underlying cause before making operational changes.
 
 ---
 
+Here is the complete, professional documentation you can add to your existing docs site (ReadTheDocs) or internal admin guide. 
+
+You can copy and paste this directly into your Markdown files. It explains the Factory Calendar feature to your users and your development team.
+
+---
+
+# Factory Calendar & Off-Day Management
+
+## Overview
+Manufacturing companies do not all operate 24/7. Some factories close on Sundays, others operate on a 5-day work week, and some require temporary shutdowns for maintenance, festivals, or emergencies. 
+
+The **Factory Calendar** feature ensures that Manufacturing BI Copilot respects these schedules. By configuring your factory's calendar, you prevent the AI from generating false alerts, zero-production anomalies, or incorrect forecasts on days when your plant is intentionally closed.
+
+---
+
+## 1. How the System Handles Off-Days (The "Pause" State)
+
+When you mark a date as closed in the Factory Calendar, the SaaS enters a **"Pause & Resume" state** for that day:
+
+* **No False Alerts:** The AI will not generate "critical delay" or "zero production" alerts just because the factory didn't run.
+* **Frozen Graphs & KPIs:** The dashboard will display data up to your **last working day**. It will not show empty charts for the current closed day.
+* **AI Plan Generation Paused:** The AI will skip generating tomorrow's production plan if tomorrow is a designated off-day.
+* **The Holiday Banner:** When managers log in on an off-day, a clear amber banner (🌴 *Factory is Closed Today*) will appear at the top of the dashboard, confirming the system is paused.
+
+### Seamless Resume
+When the next working day begins, the system automatically wakes up. The dashboard will resume calculating metrics from the previous working day, ensuring continuity without needing manual resets.
+
+---
+
+## 2. How to Configure the Calendar
+
+You can manage your factory's schedule directly from the **Settings** page.
+
+1. Go to **Settings** → **Factory Calendar**.
+2. Click **Manage Calendar**. This opens the Operating Calendar Modal.
+3. By default, **all days are active (working days)**. 
+4. To mark a holiday or a maintenance shutdown:
+   * Click on the specific date on the calendar.
+   * Enter a **Reason** (e.g., "Diwali", "Machine Repair", "Annual Maintenance").
+   * Click **Set as Closed Day**.
+5. The date will turn amber, indicating the factory is closed.
+6. To undo a closure, click the amber date and click **Remove Closure**.
+
+---
+
+## 3. How this Impacts AI Forecasting & Analytics
+
+The AI is fully aware of your calendar rules.
+
+* **Production Forecasting:** The AI will not predict normal production targets on a planned holiday. If Monday is a holiday, the AI will base Monday's targets on the days preceding the weekend, not the off-day.
+* **Historical Data:** If you previously worked on Sundays but stopped in April, your historical Sunday data remains intact. The calendar only affects how the system interprets *current and future* daily metrics.
+* **Machine Downtime:** Time outside of scheduled operating hours is not counted as unplanned downtime.
+
+---
+
+## 4. Integration with AI Q&A (Ask AI)
+
+When you ask the AI Copilot questions about your factory data, it uses your factory calendar for context.
+
+**Example 1:**
+* **Question:** "Why was production zero yesterday?"
+* **AI Response (if yesterday was a holiday):** "Yesterday was marked as a planned factory closure (Maintenance Shutdown). Production was not scheduled. The last recorded production was on [Previous Working Day]."
+
+**Example 2:**
+* **Question:** "Why did we miss our target on Tuesday?"
+* **AI Response (if Tuesday was a working day):** "Tuesday was a scheduled working day. Production was 500 units against a target of 800 units. The primary cause of the shortfall was..."
+
+---
+
+## 5. System & Database Architecture (For Developers)
+
+### The Data Model
+The calendar data is stored in the `Company` table in PostgreSQL:
+```prisma
+model Company {
+  id              String   @id @default(cuid())
+  workingDays     Int[]    @default([1, 2, 3, 4, 5, 6, 7]) // 1=Mon, 7=Sun
+  plannedHolidays Json     @default("[]") 
+  // ...
+}
+```
+*(Note: `plannedHolidays` stores an array of objects: `{ date: "2026-11-12", label: "Diwali" }`).*
+
+### The Calendar Service
+The logic is centralized in `src/lib/scheduling/calendar.ts`.
+
+```typescript
+import { isFactoryOpen, getLastWorkingDay } from "@/lib/scheduling/calendar";
+```
+
+* `isFactoryOpen(company, date)`: Checks if the exact date is in the `plannedHolidays` list, or if the day of the week is in `workingDays`.
+* `getLastWorkingDay(company, date)`: Loops backward up to 14 days to find the last day the factory was open.
+
+### Dashboard Integration
+In `src/app/(app)/dashboard/page.tsx`, the server component checks the calendar before fetching data:
+
+```typescript
+const isClosed = company ? !isFactoryOpen(company) : false;
+const activeDateObj = isClosed ? getLastWorkingDay(company) : new Date();
+
+// Functions that need a full Date object:
+getOrdersSnapshot(companyId, activeDateObj)
+
+// Functions that query the DB:
+getTodayProgress(companyId, activeDateObj)
+```
+
+### AI Plan Generation Pause
+In `src/lib/generate-plan.ts`, the AI generation function checks the calendar before calling Claude:
+
+```typescript
+const company = await prisma.company.findUnique({ where: { id: companyId } });
+
+// If tomorrow is closed, don't call the AI.
+if (company && !isFactoryOpen(company, planDate)) {
+  return prisma.productionPlan.upsert({
+    // ... returns a paused plan with status "APPROVED"
+  });
+}
+```
+
 # 10. Troubleshooting Guide
 
 This section should help users resolve common problems without contacting support for every issue.
