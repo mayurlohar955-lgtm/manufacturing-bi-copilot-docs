@@ -8,24 +8,7 @@ Manufacturing BI Copilot connects directly with your existing factory databases 
 
 You can establish a secure, read-only connection to the following database engines:
 
-* **PostgreSQL** (v12 and above)
-* **MySQL / MariaDB** (v8.0 and above)
-* **Microsoft SQL Server** (2016 and above)
-
-### How to Connect Your SQL Database
-1. Log in to your [Manufacturing BI Copilot](https://bhavu.co) workspace.
-2. Navigate to **Settings** -> **Data Sources** -> **Add SQL Connection**.
-3. Enter your database connection details:
-   * **Host / IP Address:** Your server URL or IP (e.g., `://yourfactory.com`).
-   * **Port:** Default ports (`5432` for PostgreSQL, `3306` for MySQL, `1433` for SQL Server).
-   * **Database Name:** The name of your production schema.
-   * **Username & Password:** Use a dedicated **read-only** database user.
-4. Click **Test Connection** to verify access, then click **Save**.
-
-!!! danger "Security Best Practice"
-    Always create a **Read-Only (`SELECT` only)** database user for Manufacturing BI Copilot. Never connect using your root or admin database credentials.
-
----
+* **Neon PostgreSQL**
 
 ## 2. Recommended Database Table Schema
 
