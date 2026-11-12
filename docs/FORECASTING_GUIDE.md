@@ -1,50 +1,33 @@
-# Production Forecasting & Machine Failure Prediction Guide
+# Production Forecasting Guide
 
-Manufacturing BI Copilot uses historical operational records to forecast future production output and identify early warning signs of equipment failure. This guide explains how to prepare your data and interpret AI predictions.
+## Overview
+The Forecasting engine uses Machine Learning (Time-Series forecasting) to predict future production output, machine failures, and inventory depletion. This helps plant managers shift from **reactive** firefighting to **proactive** planning.
 
----
+## 1. Production Forecasting
 
-## 1. Data Requirements for Accurate Predictions
+### How it works:
+1. The AI analyzes the last 90 days of production logs.
+2. It accounts for day-of-week seasonality (e.g., Monday shifts are always slower).
+3. It generates a **7-day forecast** of expected production output per line.
 
-To generate reliable forecasts, your dataset should meet these minimum guidelines:
+### Where to see it:
+*   **Dashboard -> Trend Charts:** The dotted line extending beyond today's date shows the predicted output.
+*   **AI Insights:** If the predicted output is lower than the target, the AI will suggest shifting resources to that line.
 
-* **Historical Depth:** Upload at least **30 days** of continuous daily or hourly production logs. More history improves seasonal and shift-level accuracy.
-* **Consistent Time Intervals:** Ensure your `timestamp` column follows a uniform schedule (e.g., hourly sensor readings or end-of-shift summaries) without large missing gaps.
-* **Key Telemetry Columns:** Include metrics such as `units_produced`, `cycle_time`, `temperature_c`, `vibration_mm_s`, or `downtime_minutes`.
+## 2. Predictive Maintenance (Machine Failure)
 
-!!! tip "Improving Forecast Accuracy"
-    Remove test runs, scheduled maintenance windows, and holiday shutdown days from your training file so the AI does not mistake planned downtime for a machine breakdown.
+### How it works:
+The ML model monitors machine-level downtime and scrap rates. It looks for "creeping" degradation:
+*   A machine that has 10 minutes of downtime every day for 5 days is more likely to fail soon than one with a single 50-minute failure.
+*   The AI triggers a `WARNING` alert: *"Press #4 has shown increasing vibration/downtime over 5 days. Schedule maintenance."*
 
----
+## 3. Demand vs. Capacity Forecasting
 
-## 2. Production Output Forecasting
+The system compares incoming orders (Demand) against your historical production capacity (Capacity).
+*   If the forecast shows you will produce 1,000 units next week, but you have 2,000 units of orders due, the AI will trigger a **Capacity Alert** on the Dashboard.
 
-Production forecasting helps plant managers plan raw material orders, shift staffing, and customer delivery timelines.
+## 4. Model Limitations
 
-### How to Run a Production Forecast
-1. Open your workspace in [Manufacturing BI Copilot](https://bhavu.co).
-2. Upload your historical production log or connect your live SQL view.
-3. Navigate to the **Forecasting** tab (or ask the AI Assistant directly).
-4. Select your target metric (e.g., `units_produced`) and choose a forecast horizon (**7 days**, **14 days**, or **30 days**).
-
-### Sample AI Forecasting Prompts
-* *"Forecast total unit output for Line 1 over the next 14 days based on last month's shift averages."*
-* *"Predict when our current stock of Aluminum 6061 rods will run out at our current daily production rate."*
-
----
-
-## 3. Machine Failure Prediction & Risk Scores
-
-Instead of waiting for a sudden breakdown, the platform monitors gradual drift in machine operating parameters to flag maintenance risks early.
-
-### Understanding Risk Levels
-The system evaluates equipment health and assigns a clear risk status:
-
-| Risk Level | Risk Score | What It Means | Recommended Action |
-| :--- | :--- | :--- | :--- |
-| **Normal** | `0% – 39%` | Machine telemetry is within standard operating limits. | Continue normal production schedule. |
-| **Elevated** | `40% – 69%` | Minor drift detected (e.g., rising temperature or slower cycle times). | Inspect during the next scheduled shift changeover. |
-| **Critical** | `70% – 100%` | High probability of component wear or impending failure. | Schedule immediate preventive maintenance check. |
-
-!!! warning "Engineering Review Required"
-    Machine failure predictions are statistical risk indicators based on historical data patterns. Always have a qualified maintenance engineer physically inspect the equipment before shutting down a production line.
+*   **Data Quality:** Forecasts are only as good as the data. If downtime is not logged correctly, the model cannot predict it.
+*   **Black Swan Events:** The model cannot predict sudden power grid failures or natural disasters; it only predicts based on historical patterns.
+*   **Cold Start:** A new factory needs at least 14 days of data before the forecasting engine generates reliable predictions.
