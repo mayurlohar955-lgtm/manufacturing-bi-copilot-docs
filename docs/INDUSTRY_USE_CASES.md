@@ -1,56 +1,34 @@
-# Industry Use Cases
+# Industry Use Cases for Manufacturing BI Copilot
 
-Manufacturing BI Copilot adapts to different production environments by analyzing machine telemetry, shift logs, and inventory records. Explore how teams across various manufacturing sectors use the platform to cut costs and boost output.
-
----
-
-## 1. CNC Machining & Precision Engineering
-Machine shops deal with tight tolerances, expensive tooling, and unplanned spindle downtime.
-
-* **The Challenge:** Operators often notice tool wear or overheating only after a batch of parts fails quality inspection.
-* **How Copilot Helps:**
-  * Tracks spindle temperature, vibration, and cycle times across shifts.
-  * Flags gradual temperature spikes days before a bearing or motor fails.
-* **Sample AI Prompt:** *"Which CNC machine had the highest cycle time variance and defect count during the night shift this week?"*
+## Overview
+Manufacturing BI Copilot is highly customizable. While the core engine tracks OEE, Scrap, and Downtime, the way it is used varies heavily by industry. Here are 4 real-world use cases showing how factories use the platform.
 
 ---
 
-## 2. Automotive Component Manufacturing
-Tier-1 and Tier-2 auto suppliers manage high-volume assembly lines with strict delivery schedules.
+### 1. Automotive Parts Manufacturing (High-Volume, Low-Margin)
+*   **The Challenge:** Producing millions of identical parts requires strict quality control. A 1% scrap rate equals massive financial loss.
+*   **How Copilot Helps:**
+    *   **Real-time Scrap Tracking:** Supervisors log scrap immediately. The dashboard flags if scrap exceeds 2%.
+    *   **OEE Optimization:** Identifies which CNC machine is the bottleneck.
+    *   **Predictive Maintenance:** Predicts tool wear before it causes a defect spike.
 
-* **The Challenge:** Tracking Overall Equipment Effectiveness (OEE) across multiple stamping, welding, and assembly lines takes hours of manual Excel work.
-* **How Copilot Helps:**
-  * Combines output logs and downtime codes into instant visual dashboards.
-  * Identifies recurring micro-stoppages that silently reduce daily line capacity.
-* **Sample AI Prompt:** *"Rank our top 5 downtime error codes on Assembly Line 3 over the last 30 days and calculate total lost production hours."*
+### 2. Food & Beverage Processing (Perishables, Strict Compliance)
+*   **The Challenge:** Ingredients expire, and batch traceability is legally required.
+*   **How Copilot Helps:**
+    *   **Yield Rate Tracking:** Ensures that 100kg of raw flour produces the expected 140kg of bread (accounting for water).
+    *   **Inventory Alerts:** Flags when perishable raw materials are approaching their expiration date.
+    *   **Shift Reports:** Automatically generates compliance logs for food safety audits.
 
----
+### 3. Textile & Apparel (Multi-Product, Shift-Based)
+*   **The Challenge:** Factories switch between hundreds of SKUs daily. Tracking which line is running which fabric is complex.
+*   **How Copilot Helps:**
+    *   **Line-Level Tracking:** Monitors efficiency per sewing line (e.g., Line A is making T-shirts, Line B is making jeans).
+    *   **Labor vs. Machine:** Uses the `shift` field to compare daytime vs. nighttime efficiency.
+    *   **Machine Alerts:** Catches when a loom thread breaks too frequently.
 
-## 3. Plastics & Injection Molding
-Injection molding plants rely on precise temperature and pressure control to prevent warping, short shots, and material waste.
-
-* **The Challenge:** High scrap rates eat directly into profit margins when molding parameters drift unnoticed.
-* **How Copilot Helps:**
-  * Correlates barrel temperatures, injection pressure, and cooling times with rejection logs.
-  * Alerts supervisors when scrap rates cross normal threshold limits.
-* **Sample AI Prompt:** *"Is there a correlation between mold temperature fluctuations and flash defects on Press 04?"*
-
----
-
-## 4. Packaging & FMCG Production
-High-speed packaging lines require continuous raw material availability and minimal changeover delays.
-
-* **The Challenge:** Running out of packaging film, labels, or cartons stops the entire line unexpectedly.
-* **How Copilot Helps:**
-  * Analyzes daily material consumption rates against current warehouse stock levels.
-  * Forecasts exact reorder dates to prevent stockouts.
-* **Sample AI Prompt:** *"Based on last week's production speed, which packaging materials will run out within the next 10 days?"*
-
----
-
-## Ready to Test Your Own Factory Data?
-
-You can explore pre-loaded industry datasets in our live sandbox environment right now:
-
-* **Launch Live Workspace:** [Open Manufacturing BI Copilot](https://bhavu.co)
-* **Review Upload Formats:** Check our [User Guide](USER_GUIDE.md) to see sample CSV column layouts.
+### 4. Pharmaceuticals & Chemicals (Zero-Defect Tolerance)
+*   **The Challenge:** A single contaminated batch can cost millions and harm patients.
+*   **How Copilot Helps:**
+    *   **Anomaly Detection:** Instantly flags if temperature or pressure sensors (via CSV upload) deviate from the acceptable range.
+    *   **Root Cause Analysis:** The AI Copilot correlates a spike in scrap with specific machine downtime events, helping engineers identify the root cause quickly.
+    *   **Audit Trail:** Maintains a strict, immutable log of who changed the production targets and when.
