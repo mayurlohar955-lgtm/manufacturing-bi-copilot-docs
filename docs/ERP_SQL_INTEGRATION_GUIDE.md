@@ -1,53 +1,39 @@
 # ERP & SQL Database Integration Guide
 
-Manufacturing BI Copilot connects directly with your existing factory databases and Enterprise Resource Planning (ERP) systems. This allows you to analyze live production records without manually exporting spreadsheets every day.
+## Overview
+While Manufacturing BI Copilot supports manual CSV/Excel uploads, enterprise factories require real-time synchronization with their existing systems (SAP, Oracle, Tally, or custom SQL databases). This guide explains how to connect your ERP or SQL database to the Copilot.
 
----
+## 1. Supported Integration Methods
 
-## 1. Supported SQL Databases
+### A. Automated CSV/Excel Sync
+*   **How it works:** An external script (e.g., Python, PowerShell) runs on your ERP server, exports the daily production data to a CSV, and uploads it to the Copilot API.
+*   **Endpoint:** `POST /api/upload/ingest`
+*   **Best for:** Legacy ERPs without direct database access.
 
-You can establish a secure, read-only connection to the following database engines:
+### B. Direct SQL Connection (PostgreSQL/MySQL)
+*   **How it works:** The Copilot connects directly to a read-only replica of your ERP database and runs scheduled queries to fetch production logs.
+*   **Setup:** Provide the Database URL, Username, and Password in the `Settings -> Integrations` page.
+*   **Security:** The connection requires read-only permissions. The Copilot never modifies your ERP data.
 
-* **Neon PostgreSQL**
+### C. REST API Webhooks
+*   **How it works:** If your ERP supports webhooks (e.g., when an order is fulfilled or a machine cycle completes), it can send a `POST` request to the Copilot API with the JSON payload.
+*   **Endpoint:** `POST /api/v1/production-logs`
 
-## 2. Recommended Database Table Schema
+## 2. Data Mapping & Schema
 
-For the AI Assistant to accurately answer questions about downtime, output, and quality, ensure your connected SQL view or table includes clean column names:
+When connecting an external system, you must map your ERP columns to the Copilot schema.
 
-```sql
-CREATE VIEW production_summary_view AS
-SELECT 
-    log_timestamp AS timestamp,
-    machine_code AS machine_id,
-    shift_name AS shift,
-    good_units AS units_produced,
-    rejected_units AS defect_count,
-    downtime_mins AS downtime_minutes,
-    spindle_temp AS temperature_c
-FROM factory_floor_logs;
-```
+| ERP Field | Copilot Field | Data Type |
+| :--- | :--- | :--- |
+| `WO_ID` | `externalId` (Orders) | String |
+| `MACHINE_CODE` | `line` (ProductionLogs) | String |
+| `GOOD_QTY` | `quantityProduced` | Integer |
+| `TARGET_QTY` | `quantityTarget` | Integer |
+| `REJECT_QTY` | `scrapQty` | Integer |
+| `RUN_DATE` | `date` | ISO-8601 (YYYY-MM-DD) |
 
----
+## 3. Error Handling & Retries
 
-## 3. Exporting Data from Popular ERPs
-
-If your factory uses an on-premise ERP without direct cloud database access, you can schedule automated CSV or Excel exports from your system and upload them into the platform.
-
-### SAP (S/4HANA & Business One)
-1. Open your production order report (e.g., transaction **`COOIS`** for Production Order Information System).
-2. Filter by your desired plant code and date range.
-3. Click **List** -> **Export** -> **Spreadsheet** (`.xlsx`).
-4. Upload the exported file directly into the **Upload Data** tab in Manufacturing BI Copilot.
-
-### Odoo Manufacturing (MRP)
-1. Go to the **Manufacturing** app -> **Reporting** -> **Work Orders**.
-2. Switch to the **List View** and select the records you want to analyze.
-3. Click **Action** -> **Export**, select **CSV** or **XLSX**, and include fields for *Work Center*, *Duration*, *Quantity Produced*, and *Status*.
-
-### TallyPrime (Inventory & Raw Material Logs)
-1. Open **Gateway of Tally** -> **Display More Reports** -> **Inventory Books** -> **Stock Summary**.
-2. Press **`Alt + E`** (Export) and set the file format to **Excel (Spreadsheet)**.
-3. Upload the sheet to ask the AI Assistant questions about stock consumption and reorder risks.
-
-!!! tip "Need Custom ERP Assistance?"
-    If your plant runs a custom legacy ERP or MES system, [chat with our engineering team on WhatsApp](https://bhavu.co) for help building a custom connector.
+*   If the ERP API is down, the Copilot will not crash. It will log an error to the `AuditLog` (`integration.sync.failed`).
+*   The system retries the sync automatically every 15 minutes for up to 2 hours.
+*   Duplicate entries are automatically skipped using the `externalId` unique constraint.
