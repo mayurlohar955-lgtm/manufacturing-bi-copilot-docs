@@ -1,0 +1,7 @@
+Date,Line,Product,Scrap Qty,Reason
+2026-11-10,Line A,Valve Body,20,Porosity
+2026-11-10,Line B,Actuator,10,Dimensional Error
+2026-11-11,Line A,Valve Body,10,Porosity
+2026-11-11,Line B,Actuator,5,Dimensional Error
+2026-11-12,Line A,Valve Body,50,Tooling Failure
+2026-11-12,Line B,Actuator,25,Surface Defect

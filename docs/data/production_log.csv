@@ -1,0 +1,13 @@
+Date,Line,Product,Target,Produced,Shift
+2026-11-10,Line A,Valve Body,1000,980,Morning
+2026-11-10,Line B,Actuator,800,750,Morning
+2026-11-10,Line A,Valve Body,1000,950,Evening
+2026-11-10,Line B,Actuator,800,800,Evening
+2026-11-11,Line A,Valve Body,1000,990,Morning
+2026-11-11,Line B,Actuator,800,780,Morning
+2026-11-11,Line A,Valve Body,1000,1010,Evening
+2026-11-11,Line B,Actuator,800,810,Evening
+2026-11-12,Line A,Valve Body,1000,500,Morning
+2026-11-12,Line B,Actuator,800,700,Morning
+2026-11-12,Line A,Valve Body,1000,0,Evening
+2026-11-12,Line B,Actuator,800,0,Evening

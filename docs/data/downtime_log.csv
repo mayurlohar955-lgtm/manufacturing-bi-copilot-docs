@@ -1,0 +1,5 @@
+Machine,Line,Start Time,End Time,Reason
+Press 4,Line A,2026-11-10T10:00:00Z,2026-11-10T10:45:00Z,Tooling Change
+Press 4,Line A,2026-11-11T14:00:00Z,2026-11-11T15:30:00Z,Hydraulic Leak
+CNC 2,Line B,2026-11-10T08:00:00Z,2026-11-10T08:15:00Z,Material Shortage
+CNC 2,Line B,2026-11-12T09:00:00Z,2026-11-12T12:00:00Z,Motor Overheat
