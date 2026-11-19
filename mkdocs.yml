@@ -23,3 +23,6 @@ nav:
   - Trust & Compliance:
       - Security Policy: SECURITY.md
       - System Reliability: RELIABILITY.md
+extra_css:
+  - stylesheets/effects.css
+
