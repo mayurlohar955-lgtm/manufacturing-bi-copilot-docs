@@ -1,0 +1,23 @@
+/* Subtle card/callout lift on hover */
+.rtd-callout-highlight {
+  border-left: 4px solid #2563eb;
+  padding: 12px 16px;
+  border-radius: 6px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background-color: rgba(37, 99, 235, 0.05);
+}
+
+.rtd-callout-highlight:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.12);
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .rtd-callout-highlight {
+    transition: none;
+  }
+  .rtd-callout-highlight:hover {
+    transform: none;
+  }
+}
