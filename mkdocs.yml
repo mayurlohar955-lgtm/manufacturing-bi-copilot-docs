@@ -6,7 +6,12 @@ site_author: "Manufacturing BI Copilot Team"
 # Point docs_dir to the folder shown in your screenshot
 docs_dir: docs
 
-theme: material
+exclude_docs: |
+  user_mangement.md
+
+theme:
+  name: material
+  custom_dir: overrides
 
 nav:
   - Home: README.md
