@@ -192,6 +192,16 @@ in your deployment.
 
 ---
 
+<div class="rtd-callout-highlight">
+  <strong>First-time setup tip:</strong> Upload your shift CSV first to see OEE and downtime populate automatically.
+</div>
+
+## Sample Factory Data
+Download this sample file to test the app immediately:
+- [Download Production Log (CSV)](docs/data/production_log.csv)
+- [Download DownTime Log (CSV)](docs/data/downtime_log.csv)
+- [Download Scrap Log(CSV)](docs/data/scrap_log.csv)
+
 ## Quick Start Guide
 
 Get up and running with Manufacturing BI Copilot in less than 2 minutes:
